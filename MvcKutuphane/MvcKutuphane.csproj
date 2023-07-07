@@ -258,6 +258,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Layout.cshtml" />
     <Content Include="Views\Kategori\Index.cshtml" />
+    <Content Include="Views\Kategori\KategoriEkle.cshtml" />
+    <Content Include="Views\Kategori\KategoriGetir.cshtml" />
+    <Content Include="Views\Yazar\Index.cshtml" />
+    <Content Include="Views\Yazar\YazarEkle.cshtml" />
+    <Content Include="Views\Yazar\YazarGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,7 +275,6 @@
     <Folder Include="Views\Personel\" />
     <Folder Include="Views\Uye\" />
     <Folder Include="Views\Yardım\" />
-    <Folder Include="Views\Yazar\" />
     <Folder Include="Views\İslem\" />
   </ItemGroup>
   <ItemGroup>
