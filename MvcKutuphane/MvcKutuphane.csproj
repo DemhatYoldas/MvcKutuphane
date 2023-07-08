@@ -263,6 +263,9 @@
     <Content Include="Views\Yazar\Index.cshtml" />
     <Content Include="Views\Yazar\YazarEkle.cshtml" />
     <Content Include="Views\Yazar\YazarGetir.cshtml" />
+    <Content Include="Views\Kitap\Index.cshtml" />
+    <Content Include="Views\Kitap\KitapEkle.cshtml" />
+    <Content Include="Views\Kitap\KitapGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -271,7 +274,6 @@
     <Folder Include="Views\Kasa\" />
     <Folder Include="Views\KitapAl\" />
     <Folder Include="Views\KitapVer\" />
-    <Folder Include="Views\Kitap\" />
     <Folder Include="Views\Personel\" />
     <Folder Include="Views\Uye\" />
     <Folder Include="Views\Yardım\" />
