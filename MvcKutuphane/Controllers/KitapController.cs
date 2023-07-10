@@ -13,10 +13,15 @@ namespace MvcKutuphane.Controllers
     {
         // GET: Kitap
         DBKUTUPHANEEntities db = new DBKUTUPHANEEntities();
-        public ActionResult Index()
+        public ActionResult Index(string p)
         {
-            var kitap = db.TBLKITAP.ToList();
-            return View(kitap);
+            var kitaplar= from k in db.TBLKITAP select k;
+            if (!string.IsNullOrEmpty(p))
+            {
+                kitaplar = kitaplar.Where(m => m.AD.Contains(p));
+            }
+            //var kitap = db.TBLKITAP.ToList();
+            return View(kitaplar.ToList());
         }
 
         [HttpGet]
@@ -84,18 +89,19 @@ namespace MvcKutuphane.Controllers
             return View("KitapGetir", kitap);
         }
 
+        [HttpPost]
         public ActionResult KitapGuncelle(TBLKITAP p)
         {
-            var kitap =db.TBLKITAP.Find(p.ID);
-            kitap.AD = p.AD;
-            kitap.BASIMYIL= p.BASIMYIL;
-            kitap.YAYINEVI= p.YAYINEVI;
-            kitap.SAYFA= p.SAYFA;
-            kitap.DURUM= p.DURUM;
+            var ktp =db.TBLKITAP.Find(p.ID);
+            ktp.AD = p.AD;
+            ktp.BASIMYIL= p.BASIMYIL;
+            ktp.YAYINEVI= p.YAYINEVI;
+            ktp.SAYFA= p.SAYFA;
+            ktp.DURUM= p.DURUM;
             var ktg = db.TBLKATEGORI.Where(k => k.ID == p.TBLKATEGORI.ID).FirstOrDefault();
             var yzr = db.TBLYAZAR.Where(y => y.ID == p.TBLYAZAR.ID).FirstOrDefault();
-            kitap.KATEGORI = ktg.ID;
-            kitap.YAZAR = yzr.ID;
+            ktp.KATEGORI = ktg.ID;
+            ktp.YAZAR = yzr.ID;
             db.SaveChanges();
             return RedirectToAction("Index");
 

@@ -266,6 +266,9 @@
     <Content Include="Views\Kitap\Index.cshtml" />
     <Content Include="Views\Kitap\KitapEkle.cshtml" />
     <Content Include="Views\Kitap\KitapGetir.cshtml" />
+    <Content Include="Views\Personel\Index.cshtml" />
+    <Content Include="Views\Personel\PersonelGetir.cshtml" />
+    <Content Include="Views\Personel\PersonelEkle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -274,7 +277,6 @@
     <Folder Include="Views\Kasa\" />
     <Folder Include="Views\KitapAl\" />
     <Folder Include="Views\KitapVer\" />
-    <Folder Include="Views\Personel\" />
     <Folder Include="Views\Uye\" />
     <Folder Include="Views\Yardım\" />
     <Folder Include="Views\İslem\" />

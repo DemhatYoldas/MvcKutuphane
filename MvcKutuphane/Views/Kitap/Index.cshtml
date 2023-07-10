@@ -6,8 +6,15 @@
 }
 
 <h2>Kitap Sayfası</h2>
+@using (Html.BeginForm("Index", "Kitap", FormMethod.Get))
+{
+    <div style="margin-bottom:15px; margin-top:15px;"
+         class="form-control">
+        <b>Aranacak Kitap Adını Grin : </b>@Html.TextBox("p")
+        <input type="submit" value="Ara" class="btn btn-success" />
+    </div>
 
-<div style="margin-bottom:15px; margin-top:15px; "><input type="text" class="form-control" placeholder="aranacak kitabı giriniz..."/></div>
+}
 
 <table class="table table-bordered table table-striped">
     <tr>
