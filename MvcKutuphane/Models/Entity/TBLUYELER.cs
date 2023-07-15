@@ -11,8 +11,7 @@ namespace MvcKutuphane.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class TBLUYELER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,16 +22,10 @@ namespace MvcKutuphane.Models.Entity
         }
     
         public int ID { get; set; }
-        [Required(ErrorMessage ="Adý boþ býrakamassýnýz")]
-        [StringLength(20,ErrorMessage ="Enfazla 20 karakter girebilirsiniz")]
         public string AD { get; set; }
-        [Required(ErrorMessage = "Soyadý boþ býrakamassýnýz")]
         public string SOYADI { get; set; }
-        [Required(ErrorMessage = "Mail  boþ býrakamassýnýz")]
         public string MAIL { get; set; }
-        [Required(ErrorMessage = "Kullanýcý Adý boþ býrakamassýnýz")]
         public string KULLANICIADI { get; set; }
-        [StringLength(10, ErrorMessage = "Enfazla 10 karakter girebilirsiniz")]
         public string SIFRE { get; set; }
         public string FOTOGRAF { get; set; }
         public string TELEFON { get; set; }

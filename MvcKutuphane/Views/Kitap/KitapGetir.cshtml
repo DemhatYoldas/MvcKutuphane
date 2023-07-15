@@ -40,10 +40,11 @@
             <label>Sayfa </label>
             @Html.TextBoxFor(y => y.SAYFA, new { @class = "form-control" })
         </div>
-        <div style="margin-bottom: 15px">
+        @*<div style="margin-bottom: 15px">
             <label>Durum </label>
             @Html.TextBoxFor(y => y.DURUM, new { @class = "form-control" })
-        </div>
+        </div>*@
+        <input type="hidden" name="DURUM" value="True" />
         <button class="btn btn-success"> Güncelle </button>
     </div>
 }

@@ -97,7 +97,7 @@ namespace MvcKutuphane.Controllers
             ktp.BASIMYIL= p.BASIMYIL;
             ktp.YAYINEVI= p.YAYINEVI;
             ktp.SAYFA= p.SAYFA;
-            ktp.DURUM= p.DURUM;
+            ktp.DURUM= true;
             var ktg = db.TBLKATEGORI.Where(k => k.ID == p.TBLKATEGORI.ID).FirstOrDefault();
             var yzr = db.TBLYAZAR.Where(y => y.ID == p.TBLYAZAR.ID).FirstOrDefault();
             ktp.KATEGORI = ktg.ID;

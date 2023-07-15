@@ -141,7 +141,7 @@
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\KitapAlController.cs" />
     <Compile Include="Controllers\KitapController.cs" />
-    <Compile Include="Controllers\KitapVerController.cs" />
+    <Compile Include="Controllers\OduncController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\UyeController.cs" />
     <Compile Include="Controllers\YardımController.cs" />
@@ -279,6 +279,9 @@
     <Content Include="Views\Uye\Index.cshtml" />
     <Content Include="Views\Uye\UyeEkle.cshtml" />
     <Content Include="Views\Uye\UyeGetir.cshtml" />
+    <Content Include="Views\Odunc\OduncVer.cshtml" />
+    <Content Include="Views\Odunc\Index.cshtml" />
+    <Content Include="Views\Odunc\Odunciade.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,7 +289,6 @@
     <Folder Include="Views\Cikis\" />
     <Folder Include="Views\Kasa\" />
     <Folder Include="Views\KitapAl\" />
-    <Folder Include="Views\KitapVer\" />
     <Folder Include="Views\Yardım\" />
     <Folder Include="Views\İslem\" />
   </ItemGroup>

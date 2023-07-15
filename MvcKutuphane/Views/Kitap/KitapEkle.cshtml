@@ -37,11 +37,12 @@
         <br />
         @Html.TextBoxFor(k => k.SAYFA, new { @class = "form-control" })
     </div>
-    <div style="margin-top:15px;">
+    @*<div style="margin-top:15px;">
         <label>Durum</label>
         <br />
         @Html.TextBoxFor(k => k.DURUM, new { @class = "form-control" })
-    </div>
+    </div>*@
+    <input type="hidden"  name="DURUM" value="True"/>
     <div style="margin-top:15px">
         <button class="btn btn-success" id="BtnEkle">Kitap Ekle</button>
     </div>

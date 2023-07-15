@@ -56,10 +56,11 @@ namespace MvcKutuphane.Controllers
         public ActionResult PersonelGuncelle(TBLPERSONEL p)
         {
             var prs = db.TBLPERSONEL.Find(p.ID);
-            prs.PERSONEL = p.PERSONEL;
+            prs.AdSoyad = p.AdSoyad;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
     }
 }
