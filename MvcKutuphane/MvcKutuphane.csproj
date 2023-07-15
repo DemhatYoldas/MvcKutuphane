@@ -282,6 +282,7 @@
     <Content Include="Views\Odunc\OduncVer.cshtml" />
     <Content Include="Views\Odunc\Index.cshtml" />
     <Content Include="Views\Odunc\Odunciade.cshtml" />
+    <Content Include="Views\İslem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,7 +291,6 @@
     <Folder Include="Views\Kasa\" />
     <Folder Include="Views\KitapAl\" />
     <Folder Include="Views\Yardım\" />
-    <Folder Include="Views\İslem\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
