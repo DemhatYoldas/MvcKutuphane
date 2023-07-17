@@ -14,6 +14,7 @@
         <th>Yazar Ad</th>
         <th>Yazar Soyad</th>
         <th>Yazar Detay</th>
+        <th>Yazar Resim</th>
         <th>Sil</th>
         <th>Güncelle</th>
 
@@ -25,6 +26,16 @@
             <td>@item.ID</td>
             <td>@item.AD</td>
             <td>@item.SOYAD</td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.YAZARRESIM))
+                {
+                    <img class="img-thumbnail" src="@Url.Content(item.YAZARRESIM)" alt="Yazar Resimi" style="max-width: 100px; max-height: 100px; ">
+                }
+                else
+                {
+                    <span>Resim Yok</span>
+                }
+            </td>
             <td>@item.DETAY</td>
             <td>@Html.ActionLink("Sil", "YazarSil", new { id = item.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
             <td>

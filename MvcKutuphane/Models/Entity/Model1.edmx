@@ -26,6 +26,13 @@
           <Property Name="PARA" Type="decimal" Precision="18" Scale="2" />
           <Property Name="HAREKET" Type="int" />
         </EntityType>
+        <EntityType Name="TBLHAKKIMIZDA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACIKLAMA" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="TBLHAREKET">
           <Key>
             <PropertyRef Name="ID" />
@@ -66,6 +73,7 @@
           <Property Name="YAYINEVI" Type="varchar" MaxLength="50" />
           <Property Name="SAYFA" Type="varchar" MaxLength="4" />
           <Property Name="DURUM" Type="bit" />
+          <Property Name="KITAPRESIM" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="TBLPERSONEL">
           <Key>
@@ -95,7 +103,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AD" Type="varchar" MaxLength="50" />
           <Property Name="SOYAD" Type="varchar" MaxLength="50" />
-          <Property Name="DETAY" Type="varchar" MaxLength="1000" />
+          <Property Name="DETAY" Type="varchar(max)" />
+          <Property Name="YAZARRESIM" Type="varchar" MaxLength="250" />
         </EntityType>
         <Association Name="FK_TBLCEZALAR_TBLHAREKET">
           <End Role="TBLHAREKET" Type="Self.TBLHAREKET" Multiplicity="0..1" />
@@ -184,6 +193,7 @@
         <EntityContainer Name="DBKUTUPHANEModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLCEZALAR" EntityType="Self.TBLCEZALAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLHAKKIMIZDA" EntityType="Self.TBLHAKKIMIZDA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLHAREKET" EntityType="Self.TBLHAREKET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLKASA" EntityType="Self.TBLKASA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLKATEGORI" EntityType="Self.TBLKATEGORI" Schema="dbo" store:Type="Tables" />
@@ -295,6 +305,7 @@
           <NavigationProperty Name="TBLHAREKET" Relationship="Self.FK_TBLHAREKET_TBLKITAP" FromRole="TBLKITAP" ToRole="TBLHAREKET" />
           <NavigationProperty Name="TBLKATEGORI" Relationship="Self.FK_TBLKITAP_TBLKATEGORI" FromRole="TBLKITAP" ToRole="TBLKATEGORI" />
           <NavigationProperty Name="TBLYAZAR" Relationship="Self.FK_TBLKITAP_TBLYAZAR" FromRole="TBLKITAP" ToRole="TBLYAZAR" />
+          <Property Name="KITAPRESIM" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TBLPERSONEL">
           <Key>
@@ -327,8 +338,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DETAY" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="DETAY" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TBLKITAP" Relationship="Self.FK_TBLKITAP_TBLYAZAR" FromRole="TBLYAZAR" ToRole="TBLKITAP" />
+          <Property Name="YAZARRESIM" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_TBLCEZALAR_TBLHAREKET">
           <End Role="TBLHAREKET" Type="Self.TBLHAREKET" Multiplicity="0..1" />
@@ -440,6 +452,7 @@
             <End Role="TBLPERSONEL" EntitySet="TBLPERSONEL" />
             <End Role="TBLHAREKET" EntitySet="TBLHAREKET" />
           </AssociationSet>
+          <EntitySet Name="TBLHAKKIMIZDA" EntityType="DBKUTUPHANEModel.TBLHAKKIMIZDA" />
         </EntityContainer>
         <Association Name="FK_TBLHAREKET_TBLPERSONEL">
           <End Type="DBKUTUPHANEModel.TBLPERSONEL" Role="TBLPERSONEL" Multiplicity="0..1" />
@@ -453,6 +466,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TBLHAKKIMIZDA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACIKLAMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -516,6 +536,7 @@
           <EntitySetMapping Name="TBLKITAP">
             <EntityTypeMapping TypeName="DBKUTUPHANEModel.TBLKITAP">
               <MappingFragment StoreEntitySet="TBLKITAP">
+                <ScalarProperty Name="KITAPRESIM" ColumnName="KITAPRESIM" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AD" ColumnName="AD" />
                 <ScalarProperty Name="KATEGORI" ColumnName="KATEGORI" />
@@ -553,10 +574,19 @@
           <EntitySetMapping Name="TBLYAZAR">
             <EntityTypeMapping TypeName="DBKUTUPHANEModel.TBLYAZAR">
               <MappingFragment StoreEntitySet="TBLYAZAR">
+                <ScalarProperty Name="YAZARRESIM" ColumnName="YAZARRESIM" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AD" ColumnName="AD" />
                 <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
                 <ScalarProperty Name="DETAY" ColumnName="DETAY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLHAKKIMIZDA">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.TBLHAKKIMIZDA">
+              <MappingFragment StoreEntitySet="TBLHAKKIMIZDA">
+                <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -24,6 +24,7 @@ namespace MvcKutuphane.Models.Entity
         public string AD { get; set; }
         public string SOYAD { get; set; }
         public string DETAY { get; set; }
+        public string YAZARRESIM { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLKITAP> TBLKITAP { get; set; }
