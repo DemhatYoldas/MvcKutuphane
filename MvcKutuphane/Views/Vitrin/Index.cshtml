@@ -1,4 +1,5 @@
-﻿@model  MvcKutuphane.Models.Siniflarim.Class1
+﻿
+@model  MvcKutuphane.Models.Siniflarim.Class1
 
 @{
     Layout = null;
@@ -136,15 +137,15 @@
                 <div class="col-lg-4 ml-auto">
                     <p class="lead"></p>
                 </div>
-               
-                    @foreach (var item in Model.Deger2)
-                    {
-                        <p>@item.ACIKLAMA</p>
-                    }
-              
+
+                @foreach (var item in Model.Deger2)
+                {
+                    <p>@item.ACIKLAMA</p>
+                }
+
             </div>
 
-         
+
         </div>
     </section>
 
@@ -153,7 +154,7 @@
         <div class="container">
 
             <!-- Contact Section Heading -->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">İletişim</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">BANA ULAŞIN</h2>
 
             <!-- Icon Divider -->
             <div class="divider-custom">
@@ -168,41 +169,48 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Ad Soyad</label>
-                                <input class="form-control" id="name" type="text" placeholder="Ad Soyad" required="required" data-validation-required-message="Lütfen Ad ve Soyad yazınız.">
-                                <p class="help-block text-danger"></p>
+
+                    @using (Html.BeginForm("Index", "Vitrin", FormMethod.Post))
+                    {
+                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Ad Soyad</label>
+                                    <input class="form-control" id="name" type="text" name="AD" placeholder="Ad Soyad" required="required" data-validation-required-message="Lütfen Adınızı Ve Soyadınızı Giriniz.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Email Adresi</label>
-                                <input class="form-control" id="email" type="email" placeholder="Email Adresi" required="required" data-validation-required-message="Lütfen e-posta adresinizi girin.">
-                                <p class="help-block text-danger"></p>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Email Adresi</label>
+                                    <input class="form-control" id="email" type="text" name="MAIL" placeholder="Email Adresi" required="required" data-validation-required-message="Lütfen Email Adresinizi Giriniz.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Telefon Numaranız</label>
-                                <input class="form-control" id="phone" type="tel" placeholder="Telefon Numaranız" required="required" data-validation-required-message="Lütfen telefon numaranızı girin.">
-                                <p class="help-block text-danger"></p>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Konu</label>
+                                    <input class="form-control" id="phone" type="text" name="KONU" placeholder="Konu" required="required" data-validation-required-message="Lütfen Konu Başlını Giriniz.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Mesaj</label>
-                                <textarea class="form-control" id="message" rows="5" placeholder="Mesaj" required="required" data-validation-required-message="Lütfen Mesaj Girin."></textarea>
-                                <p class="help-block text-danger"></p>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Mesaj</label>
+                                    <textarea class="form-control" id="message" name="MESAJ" rows="5" placeholder="Mesaj" required="required" data-validation-required-message="Lütfen Mesaj Alanını Giriniz."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                        <div id="success"></div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Gönder</button>
-                        </div>
-                    </form>
+                            <br>
+                            <div id="success"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Gönder</button>
+                            </div>
+                        </form>
+                    }
+
+
+
                 </div>
             </div>
 
