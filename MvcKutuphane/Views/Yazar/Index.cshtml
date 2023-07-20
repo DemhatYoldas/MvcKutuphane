@@ -9,12 +9,12 @@
 <h2>Yazar</h2>
 <br />
 <table class="table table-bordered table table-striped">
-    <tr>
-        <th>Yazar Id</th>
-        <th>Yazar Ad</th>
-        <th>Yazar Soyad</th>
-        <th>Yazar Detay</th>
-        <th>Yazar Resim</th>
+    <tr style="background-color:rgb(252, 178, 22)">
+        <th>Id</th>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Resim</th>
+        <th>Detay</th>
         <th>Sil</th>
         <th>Güncelle</th>
 
@@ -37,7 +37,7 @@
                 }
             </td>
             <td>@item.DETAY</td>
-            <td>@Html.ActionLink("Sil", "YazarSil", new { id = item.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
+            <td>@Html.ActionLink("Sil", "YazarSil", new { id = item.ID }, new { @class = "btn btn-danger btn-circle", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
             <td>
                 <a href="/Yazar/YazarGetir/@item.ID" class="btn btn-warning"> Güncelle</a>
             </td>
@@ -45,4 +45,3 @@
     }
 </table>
 <a href="/Yazar/YazarEkle/" class="btn btn-success"> Yazar Ekle</a>
-

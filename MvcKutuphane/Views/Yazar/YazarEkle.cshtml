@@ -10,10 +10,16 @@
     <div style="margin-top:15px">
         <label>Yazarın Adı</label>
         @Html.TextBoxFor(y => y.AD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(y => y.AD)
     </div>
     <div style="margin-top:15px">
         <label>Yazarın Soyadı</label>
         @Html.TextBoxFor(y => y.SOYAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(y=>y.SOYAD)
+    </div>
+    <div style="margin-top:15px">
+        <label>Yazar Resim</label>
+        @Html.TextBoxFor(y => y.YAZARRESIM, new { @class = "form-control" })
     </div>
     <div style="margin-top:15px">
         <label>Yazar Hakkında</label>
