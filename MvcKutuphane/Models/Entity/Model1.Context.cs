@@ -39,6 +39,7 @@ namespace MvcKutuphane.Models.Entity
         public virtual DbSet<TBLHAKKIMIZDA> TBLHAKKIMIZDA { get; set; }
         public virtual DbSet<TBLILETISIM> TBLILETISIM { get; set; }
         public virtual DbSet<TBLYAPILACAKLAR> TBLYAPILACAKLAR { get; set; }
+        public virtual DbSet<TBLRESIM> TBLRESIM { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

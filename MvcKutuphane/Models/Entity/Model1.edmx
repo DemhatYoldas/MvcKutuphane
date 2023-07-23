@@ -92,6 +92,13 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AdSoyad" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="TBLRESIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResimData" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TBLUYELER">
           <Key>
             <PropertyRef Name="ID" />
@@ -249,6 +256,7 @@
           <EntitySet Name="TBLKATEGORI" EntityType="Self.TBLKATEGORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLKITAP" EntityType="Self.TBLKITAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLPERSONEL" EntityType="Self.TBLPERSONEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLRESIM" EntityType="Self.TBLRESIM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLUYELER" EntityType="Self.TBLUYELER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLYAPILACAKLAR" EntityType="Self.TBLYAPILACAKLAR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLYAZAR" EntityType="Self.TBLYAZAR" Schema="dbo" store:Type="Tables" />
@@ -536,6 +544,7 @@
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="TBLILETISIM" EntityType="DBKUTUPHANEModel.TBLILETISIM" />
           <EntitySet Name="TBLYAPILACAKLAR" EntityType="DBKUTUPHANEModel.TBLYAPILACAKLAR" />
+          <EntitySet Name="TBLRESIM" EntityType="DBKUTUPHANEModel.TBLRESIM" />
         </EntityContainer>
         <Association Name="FK_TBLHAREKET_TBLPERSONEL">
           <End Type="DBKUTUPHANEModel.TBLPERSONEL" Role="TBLPERSONEL" Multiplicity="0..1" />
@@ -584,6 +593,13 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="YAPILACAK" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="DURUM" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TBLRESIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResimData" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -742,6 +758,14 @@
               <MappingFragment StoreEntitySet="TBLYAPILACAKLAR">
                 <ScalarProperty Name="DURUM" ColumnName="DURUM" />
                 <ScalarProperty Name="YAPILACAK" ColumnName="YAPILACAK" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLRESIM">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.TBLRESIM">
+              <MappingFragment StoreEntitySet="TBLRESIM">
+                <ScalarProperty Name="ResimData" ColumnName="ResimData" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

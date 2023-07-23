@@ -6,30 +6,46 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>Personel İşlemleri</h2>
 
-<br />
-<table class="table table-bordered table table-striped">
-    <tr>
-        <th>Personel Id</th>
-        <th>Personel Adı / Soyadı</th>
-        <th>Sil</th>
-        <th>Güncelle</th>
+<div class="row">
+    <div class="col-12">
+        <h2>Personel İşlemleri</h2>
+    </div>
+</div>
 
-    </tr>
+<div class="row justify-content-end mb-2">
+    <div class="col-auto">
+        <a href="/Personel/PersonelEkle/" class="btn btn-success">Personel Ekle</a>
+    </div>
+</div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.ID</td>
-            <td>@item.AdSoyad</td>
-            <td>
-                <a href="/Personel/PersonelSil/@item.ID" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i> </a>
-            </td>
-            <td>
-                <a href="/Personel/PersonelGetir/@item.ID" class="btn btn-warning"> Güncelle</a>
-            </td>
-        </tr>
-    }
-</table>
-<a href="/Personel/PersonelEkle/" class="btn btn-success"> Personel Ekle</a>
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Personel Id</th>
+                    <th>Personel Adı / Soyadı</th>
+                    <th>Sil</th>
+                    <th>Güncelle</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.AdSoyad</td>
+                        <td>
+                            <a href="/Personel/PersonelSil/@item.ID" class="btn btn-danger btn-circle">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/Personel/PersonelGetir/@item.ID" class="btn btn-warning">Güncelle</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

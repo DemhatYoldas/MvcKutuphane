@@ -1,0 +1,140 @@
+﻿
+@using MvcKutuphane.Models.Entity
+@model List<TBLRESIM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Sayfa içeriği -->
+<br />
+<div class="row justify-content-end mb-2">
+    <div class="col-auto">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Resim Ekle
+        </button>
+    </div>
+</div>
+
+<!-- Resimlerin gösterildiği slider -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-dark">Kütüphanemizden Fotoğraflar</h5>
+    </div>
+    <div class="table-responsive">
+        @foreach (var item in Model)
+        {
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="@item.ResimData" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                    }
+
+                </div>
+            </div>
+        }
+
+        <!-- Resim Ekle Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Resim Ekle</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="imageForm">
+                            <div class="mb-3">
+                                <label for="imageFile" class="form-label">Resim Seçin:</label>
+                                <input type="file" class="form-control" id="imageFile" name="ResimData" accept="image/*">
+                            </div>
+                            <div class="mb-3">
+                                <label for="previewImage" class="form-label">Resim Önizleme:</label>
+                                <img id="previewImage" src="#" class="img-thumbnail" alt="Resim Önizleme" style="max-width: 100%; max-height: 300px;">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" id="saveButton">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stil ve JavaScript Kodları -->
+        <style>
+            .slider-container {
+                position: relative;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            .carousel-inner img {
+                width: 100%;
+                height: 100vh;
+                object-fit: cover;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                font-size: 2rem;
+                z-index: 1;
+            }
+        </style>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+        <!-- JavaScript Kodları -->
+        <script>
+            $(document).ready(function () {
+                // Sayfa yüklendiğinde carousel'i başlat
+                $('#carouselExampleCaptions').carousel();
+
+                // Resim seçildiğinde önizleme yap
+                $('#imageFile').on('change', function () {
+                    var file = $(this)[0].files[0];
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#previewImage').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                });
+
+                // Kaydet butonuna tıklandığında resmi veritabanına kaydet
+                $('#saveButton').on('click', function () {
+                    var file = $('#imageFile')[0].files[0];
+                    if (file) {
+                        var formData = new FormData();
+                        formData.append('imageFile', file);
+
+                        $.ajax({
+                            url: '/Resim/ResimEkle', // Resim kaydetme işlemi yapacak Controller Action'ının adresi
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (data) {
+                                // Kaydetme işlemi başarılı olduğunda yapılacak işlemler
+                                console.log('Resim başarıyla kaydedildi.');
+                                $('#staticBackdrop').modal('hide');
+                                location.reload(); // Sayfayı yenile
+                            },
+                            error: function (xhr, status, error) {
+                                // Kaydetme işlemi başarısız olduğunda yapılacak işlemler
+                                console.log('Resim kaydedilirken bir hata oluştu: ' + error);
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
