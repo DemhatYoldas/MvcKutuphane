@@ -30,7 +30,10 @@
         @Html.TextBoxFor(p => p.IADETARIH, "{0: dd/MM/yyyy}", new { @class = "form-control" })
         <br />
         <label>Üyenin Getirdiği Tarih</label>
-        <input type="text" class="form-control" name="UYEGETIRTARIH"  value="@DateTime.Now.ToShortDateString()" />
+        <input type="text" class="form-control" name="UYEGETIRTARIH" value="@DateTime.Now.ToShortDateString()" />
+        <br />
+        <label>Geç Gelen Gün Tarihi</label>
+        <input type="text" class="form-control" id="Gecinput" value="@ViewBag.dgr"/>
     </div>
     <br />
     <div>

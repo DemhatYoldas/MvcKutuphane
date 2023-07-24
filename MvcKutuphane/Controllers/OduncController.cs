@@ -31,9 +31,13 @@ namespace MvcKutuphane.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Odunciade(int id)
+        public ActionResult Odunciade(TBLHAREKET a)
         {
-            var iade = db.TBLHAREKET.Find(id);
+            var iade = db.TBLHAREKET.Find(a.ID);
+            DateTime d1 = DateTime.Parse(iade.IADETARIH.ToString());
+            DateTime d2 = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            TimeSpan d3 = d2 - d1;
+            ViewBag.dgr = d3.TotalDays;
             return View("Odunciade", iade);
         }
 
