@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,44 +18,14 @@ namespace MvcKutuphane.Controllers
         }
 
         [HttpPost]
-        public JsonResult ResimEkle(HttpPostedFileBase imageFile)
+        public ActionResult Resimyukle(HttpPostedFileBase dosya)
         {
-            try
+            if (dosya != null && dosya.ContentLength > 0)
             {
-                if (imageFile != null && imageFile.ContentLength > 0)
-                {
-                    byte[] imageData = null;
-                    using (var binaryReader = new BinaryReader(imageFile.InputStream))
-                    {
-                        imageData = binaryReader.ReadBytes(imageFile.ContentLength);
-                    }
-
-                    var resim = new TBLRESIM
-                    {
-                        ResimData = imageData
-                    };
-
-                    db.TBLRESIM.Add(resim);
-                    db.SaveChanges();
-
-                    return Json(new { success = true, message = "Resim başarıyla kaydedildi." });
-                }
-                else
-                {
-                    return Json(new { success = false, message = "Lütfen bir resim seçin." });
-                }
+                string dosyayolu = Path.Combine(Server.MapPath("~/Galeri/"), Path.GetFileName(dosya.FileName));
+                dosya.SaveAs(dosyayolu);
             }
-            catch (Exception ex)
-            {
-                // Hatanın detaylarını loglamak için:
-                // Loglama kütüphanesini kullanarak hatayı loglayabilirsiniz.
-
-                // Hatanın detaylarını konsola yazdırmak için:
-                Console.WriteLine("Hata Mesajı: " + ex.Message);
-                Console.WriteLine("Stack Trace: " + ex.StackTrace);
-
-                return Json(new { success = false, message = "Resim kaydedilirken bir hata oluştu: " + ex.Message });
-            }
+            return RedirectToAction("Index");
         }
 
     }
