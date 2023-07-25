@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AyarlarController.cs" />
     <Compile Include="Controllers\CikisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AnasayfaController.cs" />
     <Compile Include="Controllers\istatistikController.cs" />
     <Compile Include="Controllers\KasaController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
@@ -2139,7 +2140,7 @@
     <Content Include="web\vendor\jquery\jquery.min.map" />
     <Content Include="web\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Vitrin\Index.cshtml" />
-    <Content Include="Views\istatistik\Index.cshtml" />
+    <Content Include="Views\Anasayfa\Index.cshtml" />
     <Content Include="startbootstrap\.browserslistrc" />
     <Content Include="startbootstrap\.travis.yml" />
     <Content Include="startbootstrap\LICENSE" />
@@ -2319,6 +2320,7 @@
     <Content Include="startbootstrap\vendor\jquery\jquery.min.map" />
     <Content Include="startbootstrap\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Resim\Index.cshtml" />
+    <Content Include="Views\istatistik\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

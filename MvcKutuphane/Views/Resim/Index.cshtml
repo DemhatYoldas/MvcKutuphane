@@ -81,18 +81,18 @@
 </div>
 
 
-
 <style>
-    .slider-container {
-        position: relative;
-        width: 100%;
-        height: 100vh;
+    .carousel-container {
+        display: flex;
+        justify-content: center;
         overflow: hidden;
+        max-width: 80%; /* Reduce the width to 80% of the parent container */
+        margin: 0 auto;
     }
 
     .carousel-inner img {
         width: 100%;
-        height: 100vh;
+        height: auto;
         object-fit: cover;
     }
 
@@ -100,6 +100,31 @@
     .carousel-control-next {
         font-size: 2rem;
         z-index: 1;
+    }
+
+    .table-responsive {
+        /* Add some margin to the table to align with the carousel */
+        margin-top: 20px;
+    }
+
+    /* Adjust the card width to match the carousel */
+    .card {
+        max-width: 80%; /* Match the carousel width */
+        margin: 0 auto;
+    }
+
+    /* Center the form */
+    form {
+        max-width: 80%; /* Match the carousel width */
+        margin: 0 auto;
+    }
+
+    /* Center the file input and submit button */
+    .form-label,
+    .form-control,
+    .btn {
+        display: block;
+        margin: 0 auto;
     }
 </style>
 
