@@ -143,5 +143,25 @@ namespace MvcKutuphane.Models.Entity
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<string> EnFazlaKitapYazar()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("EnFazlaKitapYazar");
+        }
+    
+        public virtual ObjectResult<string> EnAktifUye()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("EnAktifUye");
+        }
+    
+        public virtual ObjectResult<string> EnCokOkunanKitap()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("EnCokOkunanKitap");
+        }
+    
+        public virtual ObjectResult<string> EnBasariliPersonel()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("EnBasariliPersonel");
+        }
     }
 }

@@ -215,6 +215,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="EnAktifUye" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="EnBasariliPersonel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="EnCokOkunanKitap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="EnFazlaKitapYazar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -545,6 +549,10 @@
           <EntitySet Name="TBLILETISIM" EntityType="DBKUTUPHANEModel.TBLILETISIM" />
           <EntitySet Name="TBLYAPILACAKLAR" EntityType="DBKUTUPHANEModel.TBLYAPILACAKLAR" />
           <EntitySet Name="TBLRESIM" EntityType="DBKUTUPHANEModel.TBLRESIM" />
+          <FunctionImport Name="EnFazlaKitapYazar" ReturnType="Collection(String)" />
+          <FunctionImport Name="EnAktifUye" ReturnType="Collection(String)" />
+          <FunctionImport Name="EnCokOkunanKitap" ReturnType="Collection(String)" />
+          <FunctionImport Name="EnBasariliPersonel" ReturnType="Collection(String)" />
         </EntityContainer>
         <Association Name="FK_TBLHAREKET_TBLPERSONEL">
           <End Type="DBKUTUPHANEModel.TBLPERSONEL" Role="TBLPERSONEL" Multiplicity="0..1" />
@@ -770,6 +778,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EnFazlaKitapYazar" FunctionName="DBKUTUPHANEModel.Store.EnFazlaKitapYazar" />
+          <FunctionImportMapping FunctionImportName="EnAktifUye" FunctionName="DBKUTUPHANEModel.Store.EnAktifUye" />
+          <FunctionImportMapping FunctionImportName="EnCokOkunanKitap" FunctionName="DBKUTUPHANEModel.Store.EnCokOkunanKitap" />
+          <FunctionImportMapping FunctionImportName="EnBasariliPersonel" FunctionName="DBKUTUPHANEModel.Store.EnBasariliPersonel" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
