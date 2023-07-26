@@ -140,10 +140,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AnasayfaController.cs" />
     <Compile Include="Controllers\istatistikController.cs" />
-    <Compile Include="Controllers\KasaController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\KayitolController.cs" />
-    <Compile Include="Controllers\KitapAlController.cs" />
     <Compile Include="Controllers\KitapController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OduncController.cs" />
@@ -151,7 +149,6 @@
     <Compile Include="Controllers\ResimController.cs" />
     <Compile Include="Controllers\UyeController.cs" />
     <Compile Include="Controllers\VitrinController.cs" />
-    <Compile Include="Controllers\YardımController.cs" />
     <Compile Include="Controllers\YazarController.cs" />
     <Compile Include="Controllers\İslemController.cs" />
     <Compile Include="Global.asax.cs">
