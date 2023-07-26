@@ -144,6 +144,7 @@
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\KitapAlController.cs" />
     <Compile Include="Controllers\KitapController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OduncController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\ResimController.cs" />
@@ -332,6 +333,15 @@
     <Content Include="Galeri\img1.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="login\css\my-login.css" />
+    <Content Include="login\forgot.html" />
+    <Content Include="login\img\logo.jpg" />
+    <Content Include="login\img\pngegg.png" />
+    <Content Include="login\img\simplebook.png" />
+    <Content Include="login\index.html" />
+    <Content Include="login\js\my-login.js" />
+    <Content Include="login\register.html" />
+    <Content Include="login\reset.html" />
     <Content Include="Models\Entity\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -388,6 +398,9 @@
     <Content Include="Arsha\assets\vendor\swiper\swiper-bundle.min.js.map" />
     <Content Include="Arsha\assets\img\6888604.ai" />
     <Content Include="Arsha\assets\img\6888605.eps" />
+    <Content Include="login\CONTRIBUTING.md" />
+    <Content Include="login\LICENSE" />
+    <Content Include="login\README.md" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2322,6 +2335,7 @@
     <Content Include="startbootstrap\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Resim\Index.cshtml" />
     <Content Include="Views\istatistik\Index.cshtml" />
+    <Content Include="Views\Login\Girisyap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
