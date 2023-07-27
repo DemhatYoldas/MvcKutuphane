@@ -145,6 +145,7 @@
     <Compile Include="Controllers\KitapController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OduncController.cs" />
+    <Compile Include="Controllers\PanelimController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\ResimController.cs" />
     <Compile Include="Controllers\UyeController.cs" />
@@ -323,11 +324,13 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Galeri\blank.png" />
     <Content Include="Galeri\book1.jpg" />
     <Content Include="Galeri\book2.jpg" />
     <Content Include="Galeri\book3.jpg" />
     <Content Include="Galeri\book4.jpg" />
     <Content Include="Galeri\book5.jpg" />
+    <Content Include="Galeri\DemhatYoldas.jpeg" />
     <Content Include="Galeri\img1.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -2438,14 +2441,11 @@
     <Content Include="Views\istatistik\Index.cshtml" />
     <Content Include="Views\Login\Girisyap.cshtml" />
     <Content Include="Views\Kayitol\Kayit.cshtml" />
+    <Content Include="Views\Shared\LayoutPanel.cshtml" />
+    <Content Include="Views\Panelim\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Ayarlar\" />
-    <Folder Include="Views\Cikis\" />
-    <Folder Include="Views\Kasa\" />
-    <Folder Include="Views\KitapAl\" />
-    <Folder Include="Views\Yardım\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -36,20 +36,21 @@
                                     <h3 class="mb-4">Giriş Yap</h3>
                                 </div>
                                 @*<div class="w-100">
-                <p class="social-media d-flex justify-content-end">
-                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                </p>
-            </div>*@
+                                        <p class="social-media d-flex justify-content-end">
+                                            <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                            <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                                        </p>
+                                    </div>*@
                             </div>
-                            <form action="#" class="signin-form">
+                            @using (Html.BeginForm("Girisyap", "Login", FormMethod.Post))
+                            {
                                 <div class="form-group mb-3">
-                                    <label class="label" for="name">Kullanıcı Adı</label>
-                                    <input type="text" class="form-control" placeholder="Kullanıcı Adı" required>
+                                    <label class="label" for="name">Mail </label>
+                                    <input type="text" class="form-control" placeholder="Mail Adresiniz" name="MAIL" required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="label" for="password">Şifre</label>
-                                    <input type="password" class="form-control" placeholder="Şifre" required>
+                                    <input type="password" class="form-control" placeholder="Şifreniz" name="SIFRE" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Giriş Yap</button>
@@ -66,7 +67,7 @@
                                         <a href="#">Şifremi Unuttum</a>
                                     </div>
                                 </div>
-                            </form>
+                            }
                             <p class="text-center">Üye değil misiniz? <a id="kayitOlLink" href="/Kayitol/Kayit/">Kayıt Ol</a></p>
                         </div>
                     </div>
