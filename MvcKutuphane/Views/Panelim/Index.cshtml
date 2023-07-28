@@ -1,4 +1,5 @@
-﻿
+﻿@model MvcKutuphane.Models.Entity.TBLUYELER
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutPanel.cshtml";
@@ -6,43 +7,12 @@
 
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+    <title>Kütüphane Profil Bilgilerim</title>
 
-        .form-container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-            .form-group label {
-                font-weight: bold;
-            }
-
-            .form-group input[type="password"] {
-                position: relative;
-            }
-
-                .form-group input[type="password"] + span {
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    cursor: pointer;
-                }
-    </style>
 
 </head>
 
@@ -51,113 +21,94 @@
         <div class="form-container">
             <h3 class="mb-4">Kütüphane Profil Bilgilerim</h3>
 
-            <!-- Profil Resmi Ekleme -->
             <div class="text-center mt-4">
                 <div class="profile-image" style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; margin: auto;">
-                    @if (!string.IsNullOrEmpty(Session["Resim"] as string))
-                    {
-                        <img src="@Session["Resim"].ToString()" alt="Profil Resmi" style="object-fit: cover; width: 100%; height: 100%;" />
-                    }
-                    else
-                    {
-                        <!-- Default image when no profile image is available -->
-                        <img src="~/Galeri/blank.png" alt="Varsayılan Profil Resmi" style="object-fit: cover; width: 100%; height: 100%;" />
-                    }
+                    <!-- Mevcut profil resmini gösterme -->
+                    <img id="profilResmiOnizleme" src="@Model.FOTOGRAF" alt="Profil Resmi" style="object-fit: cover; width: 100%; height: 100%;" />
                 </div>
                 <br />
-                <input type="file" id="profilResmi" accept="image/*" style="display: none;" />
-                <button class="btn btn-primary" onclick="openFileInput()">Profil Resmi Seç</button>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id">İD:</label>
-                        <input type="text" id="id" name="id" class="form-control" value="@Session["ID"].ToString()">
-                    </div>
-                    <div class="form-group">
-                        <label for="ad">Ad:</label>
-                        <input type="text" id="ad" name="ad" class="form-control" value="@Session["Ad"].ToString()">
-                    </div>
-                    <div class="form-group">
-                        <label for="mail">E-posta:</label>
-                        <input type="email" id="mail" name="mail" class="form-control" value="@Session["Mail"].ToString()">
-                    </div>
-                    <div class="form-group">
-                        <label for="okulAdi">Okul Adı:</label>
-                        <input type="text" id="okulAdi" name="okulAdi" class="form-control" value="@Session["Okuladi"].ToString()">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="kullaniciAdi">Kullanıcı Adı:</label>
-                        <input type="text" id="kullaniciAdi" name="kullaniciAdi" class="form-control" value="@Session["Kullaniciad"].ToString()">
-                    </div>
-                    <div class="form-group">
-                        <label for="soyad">Soyad:</label>
-                        <input type="text" id="soyad" name="soyad" class="form-control" value="@Session["Soyad"].ToString()">
-                    </div>
-                    <div class="form-group">
-                        <label for="sifre">Şifre:</label>
-                        <div class="input-group">
-                            <input type="password" id="sifre" name="sifre" class="form-control" value="@Session["Şifre"].ToString()">
-                            <button type="button" class="btn btn-light" style="cursor: pointer;" onclick="togglePasswordVisibility()">
-                                <i class="fa fa-eye-slash" id="sifreIcon"></i>
-                            </button>
+                <!-- Yeni profil resmi seçme işlemi için gizli input alanı -->
+                <input type="file" id="profilResmi" name="FOTOGRAF" accept="image/*" style="display: none;" />
+                <!-- Profil Resmi Değiştir butonu için -->
+                <button class="btn btn-primary" onclick="openFileInput()">Profil Resmi Değiştir</button>
+
+                <script>
+                    function openFileInput() {
+                        // Dosya seçme inputunu açma
+                        document.getElementById("profilResmi").click();
+                    }
+
+                    // Dosya seçildiğinde çalışacak fonksiyon
+                    document.getElementById("profilResmi").addEventListener("change", function (event) {
+                        var file = event.target.files[0]; // Dosyayı al
+
+                        // Dosyanın bir resim olup olmadığını kontrol et
+                        if (file && file.type.includes("image")) {
+                            var reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                // Dosya verisini al ve önizleme yap
+                                document.getElementById("profilResmiOnizleme").src = e.target.result;
+                            };
+
+                            reader.readAsDataURL(file); // Resmi önizle
+                        }
+                    });
+                </script>
+                <br />
+                @using (Html.BeginForm("Index2", "Panelim", FormMethod.Post))
+                {
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputSchool">ID</label>
+                            @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputUsername">Kullanıcı Adı</label>
+                            @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control" })
                         </div>
                     </div>
-                </div>
+                    <br />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputFirstName">Ad</label>
+                            @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputLastName">Soyad</label>
+                            @Html.TextBoxFor(x => x.SOYADI, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail">Mail</label>
+                            @Html.TextBoxFor(x => x.MAIL, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputUsername">Telefon</label>
+                            @Html.TextBoxFor(x => x.TELEFON, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputSchool">Okul</label>
+                            @Html.TextBoxFor(x => x.OKUL, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword">Şifre</label>
+                            @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-warning">Düzenle</button>
+
+                }
             </div>
-            <button class="btn btn-warning">Güncelle</button>
         </div>
-    </div>
-
-    <br />
-
-    <!-- Bootstrap ve jQuery JS -->
-
-    <script>
-        // Diğer JavaScript kodlarınız
-
-        function openFileInput() {
-            // Profil resmi için dosya yükleme işlemini tetikler
-            document.getElementById("profilResmi").click();
-        }
-
-        // Profil resmi seçildiğinde tetiklenecek olay
-        document.getElementById("profilResmi").addEventListener("change", function () {
-            var fileInput = this;
-
-            if (fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    // Yükleme tamamlandığında, görüntüyü profil resmi alanına ekler
-                    var profileImage = document.querySelector(".profile-image img");
-                    profileImage.src = e.target.result;
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        });
-    </script>
-
-    <script>
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("sifre");
-            var visibilityIcon = document.getElementById("sifreIcon");
-
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                visibilityIcon.classList.remove("fa-eye-slash");
-                visibilityIcon.classList.add("fa-eye");
-            } else {
-                passwordInput.type = "password";
-                visibilityIcon.classList.remove("fa-eye");
-                visibilityIcon.classList.add("fa-eye-slash");
-            }
-        }
-    </script>
+        <br />
 
 </body>
-
 
 </html>
