@@ -63,11 +63,21 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/Mesaj/Index/">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                   aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-images"></i>
                     <span>Mesajlar</span>
                 </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Mesaj İşlemleri:</h6>
+                        <a class="collapse-item" href="/Mesaj/Index/">Gelen Mesajlar</a>
+                        <a class="collapse-item" href="/Mesaj/Giden/">Gönderilen Mesajlar</a>
+                    </div>
+                </div>
             </li>
+
+
 
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -75,6 +85,7 @@
                     <span>Duyurular</span>
                 </a>
             </li>
+
 
 
             <!-- Nav Item - Tables -->
@@ -199,7 +210,7 @@
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                   @RenderBody()
+                    @RenderBody()
                     <!-- /.container-fluid -->
 
                 </div>
@@ -208,7 +219,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; JR.DEVELOPER 2023</span>
+                            <span>Copyright &copy; juniorcodecraft.com 2023</span>
                         </div>
                     </div>
                 </footer>
@@ -245,7 +256,7 @@
         </div>
 
 
-      
+
 
         <!-- Bootstrap core JavaScript-->
         <script src="/startbootstrap/vendor/jquery/jquery.min.js"></script>

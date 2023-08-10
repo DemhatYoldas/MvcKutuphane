@@ -2,17 +2,18 @@
 @model List<TBLMESAJLAR>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Giden";
     Layout = "~/Views/Shared/LayoutPanel.cshtml";
 }
+
 
 <div class="container-fluid">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Gelen Mesajlar</h6>
-                <a href="/Mesaj/YeniMesaj/" class="btn btn-success">Mesaj Gönder</a>
+                <h6 class="m-0 font-weight-bold text-primary">Gönderilen Mesajlar</h6>
+                @*<a href="/Mesaj/YeniMesaj/" class="btn btn-success">Yeni Mesaj</a>*@
             </div>
         </div>
         <div class="card-body">
@@ -20,11 +21,11 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Gönderen</th>
+                            <th>Alıcı</th>
                             <th>Konu</th>
                             <th>Tarih</th>
-                            <th>Durum</th>
-                            <th>Mesaj Görüntüle</th>
+                            <th>Okundu Bilgisi</th>
+                            <th>Mesaj İçerini Görüntüle</th>
 
                         </tr>
                     </thead>
@@ -32,10 +33,11 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.GONDEREN</td>
+                                <td>@item.ALICI</td>
 
                                 <td>@item.KONU</td>
                                 <td>@item.TARIH</td>
+                                <!--bu kısımda karşı taraf okuduysa okundu okunmadı bilgisi yer alsın-->
                                 <td>
                                     @if (item.DURUM == true)
                                     {
@@ -47,9 +49,8 @@
                                     }
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#portfolioModal@(item.ID)">Mesaj Görüntüle</a>
+                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#portfolioModala@(item.ID)">Mesaj İçerini Görüntüle</a>
                                 </td>
-
                             </tr>
                         }
 
@@ -59,9 +60,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 
@@ -114,43 +112,52 @@
     }
 </style>
 
+<script>
+    function updateStatusColor(selectElement) {
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var okunduBadge = document.querySelector('.okundu');
+        var okunmadıBadge = document.querySelector('.okunmadı');
+
+        if (selectedOption.value === "True") {
+            okunduBadge.style.color = "green";
+            okunmadıBadge.style.color = "";
+        } else if (selectedOption.value === "False") {
+            okunduBadge.style.color = "";
+            okunmadıBadge.style.color = "red";
+        }
+    }
+</script>
+
+
 
 
 @foreach (var item in Model)
 {
-    <div class="portfolio-modal modal fade" id="portfolioModal@(item.ID)" tabindex="-1" role="dialog" aria-labelledby="portfolioModalLabel" aria-hidden="true" data-keyboard="true">
+    <div class="portfolio-modal modal fade" id="portfolioModala@(item.ID)" tabindex="-1" role="dialog" aria-labelledby="portfolioModalLabel" aria-hidden="true" data-keyboard="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+                <!-- Kapatma butonunu ekle -->
                 <div class="modal-header">
-                    <button type="button" class="btn btn-danger btn-circle" data-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn btn-danger btn-circle" value="X" data-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    @using (Html.BeginForm("MesajGuncelle", "Mesaj", FormMethod.Post))
-                    {
-                        <div class="container">
-                            @Html.HiddenFor(model => item.ID) <!-- ID'yi gizli bir alan olarak ekleyin -->
+                <div class="modal-body ">
+                    <div class="container">
+                        <form class="form-group" method="post">
                             <br />
-                            <label for="lname">Tarih</label>
-                            <input type="text" id="lname" name="TARIH" value="@item.TARIH">
-                            <br />
-                            <label for="fname">Gönderen</label>
-                            <input type="text" id="fname" name="GONDEREN" value="@item.GONDEREN">
+                            <label for="fname">Alıcı</label>
+                            <input type="text" id="fname" name="firstname" value="@item.ALICI">
                             <br />
                             <label for="lname">Konu</label>
-                            <input type="text" id="lname" name="KONU" value="@item.KONU">
-                            <input type="hidden" name="DURUM" value="False" />
+                            <input type="text" id="lname" name="lastname" value="@item.KONU">
                             <br />
                             <label for="subject">İçerik</label>
-                            <textarea id="subject" name="ICERIK" style="height:200px">@item.ICERIK</textarea>
+                            <textarea id="subject" name="subject" style="height:200px"></textarea>
                             <br />
-                            <button type="submit" class="btn btn-warning">Okundu Bilgisini Güncelle</button>
-                        </div>
-                    }
+                            <input type="submit" class="btn btn-success" value="Gönder" />
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 }
-
-
-
