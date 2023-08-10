@@ -18,9 +18,20 @@ namespace MvcKutuphane.Controllers
             return View(mesajlar);
         }
 
+        [HttpGet]
         public ActionResult YeniMesaj()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult YeniMesaj(TBLMESAJLAR t)
+        {
+            var uyemail = (string)Session["Mail"].ToString();
+            t.GONDEREN = uyemail.ToString();
+            db.TBLMESAJLAR.Add(t);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

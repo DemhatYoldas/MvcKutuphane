@@ -6,64 +6,254 @@
     Layout = "~/Views/Shared/LayoutPanel.cshtml";
 }
 
-<h2>Mesajlar Sayfası</h2>
-
-<br />
-<div class="col-md-4 d-flex justify-content-end">
-    <a href="" class="btn btn-success">Yeni Mesaj</a>
-</div>
-<table class="table table-bordered table table-striped">
-    <tr>
-        <th>Gönderen</th>
-
-        <th>Konu</th>
-        <th>Tarih</th>
-        <th>Durum</th>
-        <th>Mesaj Görüntüle</th>
-        <th>Mesaj Gönder</th>
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.GONDEREN</td>
-
-            <td>@item.KONU</td>
-            <td>@item.TARIH</td>
-            <td>@item.DURUM</td>
-            <td>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Mesaj Görüntüle
-                </button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Mesaj Gönder
-                </button>
-            </td>
-        </tr>
-    }
-</table>
-
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Mesaj İçeriği</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="d-flex justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Gelen Mesajlar</h6>
+                <a href="/Mesaj/YeniMesaj/" class="btn btn-success">Yeni Mesaj</a>
             </div>
-            <div class="modal-body">
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Gönderen</th>
+                            <th>Konu</th>
+                            <th>Tarih</th>
+                            <th>Durum</th>
+                            <th>Mesaj Görüntüle</th>
+                            <th>Mesaj Gönder</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.GONDEREN</td>
 
-                Mesajlar burada olacak
+                                <td>@item.KONU</td>
+                                <td>@item.TARIH</td>
+                                <td>
+                                    @if (item.DURUM == true)
+                                    {
+                                        <span class="badge badge-success">Okunmamış</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-danger">Okundu</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#portfolioModal@(item.ID)">Mesaj Görüntüle</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#portfolioModala@(item.ID)">Mesaj Gönder</a>
+                                </td>
+                            </tr>
+                        }
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                <button type="button" class="btn btn-primary">Okundu</button>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="d-flex justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Gönderilen Mesajlar</h6>
+                @*<a href="/Mesaj/YeniMesaj/" class="btn btn-success">Yeni Mesaj</a>*@
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Gönderen</th>
+                            <th>Konu</th>
+                            <th>Tarih</th>
+                            <th>Okundu Bilgisi</th>
+                            <th>Mesaj İçerini Görüntüle</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.GONDEREN</td>
+
+                                <td>@item.KONU</td>
+                                <td>@item.TARIH</td>
+                                <!--bu kısımda karşı taraf okuduysa okundu okunmadı bilgisi yer alsın-->
+                                <td>
+                                        @if (item.DURUM == true)
+                                        {
+                                            <span class="badge badge-success">Okunmamış</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-danger">Okundu</span>
+                                        }
+                                    </td>
+                                <td>
+                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#portfolioModala@(item.ID)">Mesaj İçerini Görüntüle</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .okunmadı {
+        color: red;
+    }
+
+    .okundu {
+        color: green;
+    }
+</style>
+
+<script>
+    function updateStatusColor(selectElement) {
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var okunduBadge = document.querySelector('.okundu');
+        var okunmadıBadge = document.querySelector('.okunmadı');
+
+        if (selectedOption.value === "True") {
+            okunduBadge.style.color = "green";
+            okunmadıBadge.style.color = "";
+        } else if (selectedOption.value === "False") {
+            okunduBadge.style.color = "";
+            okunmadıBadge.style.color = "red";
+        }
+    }
+</script>
+
+@foreach (var item in Model)
+{
+    <div class="portfolio-modal modal fade" id="portfolioModal@(item.ID)" tabindex="-1" role="dialog" aria-labelledby="portfolioModalLabel" aria-hidden="true" data-keyboard="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn btn-danger btn-circle" value="X" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form>
+                            <br />
+                            <label for="lname">Tarih</label>
+                            <input type="text" id="lname" name="lastname" value="@item.TARIH">
+                            <br />
+                            <label for="fname">Gönderen</label>
+                            <input type="text" id="fname" name="firstname" value="@item.GONDEREN">
+                            <br />
+                            <label for="lname">Konu</label>
+                            <input type="text" id="lname" name="lastname" value="@item.KONU">
+                            <br />
+                            <label for="status">Okundu Bilgisi</label>
+                            <select id="status" name="status" onchange="updateStatusColor(this)">
+                                <option value="False" class="okunmadı">Okunmadı</option>
+                                <option value="True" class="okundu">Okundu</option>
+                            </select>
+                            <br />
+                            <label for="subject">İçerik</label>
+                            <textarea id="subject" name="subject" style="height:200px">@item.ICERIK</textarea>
+                            <br />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@foreach (var item in Model)
+{
+    <div class="portfolio-modal modal fade" id="portfolioModala@(item.ID)" tabindex="-1" role="dialog" aria-labelledby="portfolioModalLabel" aria-hidden="true" data-keyboard="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Kapatma butonunu ekle -->
+                <div class="modal-header">
+                    <button type="button" class="btn btn-danger btn-circle" value="X" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body ">
+                    <div class="container">
+                        <form class="form-group" method="post">
+                            <br />
+                            <label for="fname">Alıcı</label>
+                            <input type="text" id="fname" name="firstname" value="@item.ALICI">
+                            <br />
+                            <label for="lname">Konu</label>
+                            <input type="text" id="lname" name="lastname" value="@item.KONU">
+                            <br />
+                            <label for="subject">İçerik</label>
+                            <textarea id="subject" name="subject" style="height:200px"></textarea>
+                            <br />
+                            <input type="submit" class="btn btn-success" value="Gönder" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
