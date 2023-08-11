@@ -62,10 +62,6 @@
 
 
 
-
-
-
-
 <style>
     body {
         font-family: Arial, Helvetica, sans-serif;
@@ -116,37 +112,32 @@
 
 
 
+
+
+
+
 @foreach (var item in Model)
 {
     <div class="portfolio-modal modal fade" id="portfolioModal@(item.ID)" tabindex="-1" role="dialog" aria-labelledby="portfolioModalLabel" aria-hidden="true" data-keyboard="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn btn-danger btn-circle" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @using (Html.BeginForm("MesajGuncelle", "Mesaj", FormMethod.Post))
-                    {
-                        <div class="container">
-                            @Html.HiddenFor(model => item.ID) <!-- ID'yi gizli bir alan olarak ekleyin -->
-                            <br />
-                            <label for="lname">Tarih</label>
-                            <input type="text" id="lname" name="TARIH" value="@item.TARIH">
-                            <br />
-                            <label for="fname">Gönderen</label>
-                            <input type="text" id="fname" name="GONDEREN" value="@item.GONDEREN">
-                            <br />
-                            <label for="lname">Konu</label>
-                            <input type="text" id="lname" name="KONU" value="@item.KONU">
-                            <input type="hidden" name="DURUM" value="False" />
-                            <br />
-                            <label for="subject">İçerik</label>
-                            <textarea id="subject" name="ICERIK" style="height:200px">@item.ICERIK</textarea>
-                            <br />
-                            <button type="submit" class="btn btn-warning">Okundu Bilgisini Güncelle</button>
-                        </div>
-                    }
-                </div>
+        <!-- ... -->
+        <div class="modal-body">
+            <div class="container">
+                @Html.HiddenFor(model => item.ID) <!-- ID'yi gizli bir alan olarak ekleyin -->
+                <br />
+                <label for="lname">Tarih</label>
+                <input type="text" id="lname" name="TARIH" value="@item.TARIH">
+                <br />
+                <label for="fname">Gönderen</label>
+                <input type="text" id="fname" name="GONDEREN" value="@item.GONDEREN">
+                <br />
+                <label for="lname">Konu</label>
+                <input type="text" id="lname" name="KONU" value="@item.KONU">
+                <input type="hidden" name="DURUM" value="" />
+                <br />
+                <label for="subject">İçerik</label>
+                <textarea id="subject" name="ICERIK" style="height:200px">@item.ICERIK</textarea>
+                <br />
+                <button type="button" class="btn btn-warning" id="okunduButton@(item.ID)">Okundu Bilgisini Güncelle</button>
             </div>
         </div>
     </div>
@@ -154,3 +145,29 @@
 
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[id^="okunduButton"]').click(function () {
+            var messageId = $(this).attr('id').replace('okunduButton', ''); // Düğme ID'sinden mesaj ID'sini al
+            $.ajax({
+                type: "POST",
+                url: "/Mesaj/MesajDurumunuGuncelle",
+                data: { messageId: messageId },
+                dataType: "json",
+                success: function (response) {
+                    if (response.success) {
+                        // Durum güncellendi, popup'ı kapat
+                        $('#portfolioModal' + messageId).modal('hide');
+                        location.reload(); // Sayfayı yeniden yükle (isteğe bağlı)
+                    } else {
+                        alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+                    }
+                },
+                error: function () {
+                    alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+                }
+            });
+        });
+    });
+</script>

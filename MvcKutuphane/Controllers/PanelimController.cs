@@ -15,6 +15,11 @@ namespace MvcKutuphane.Controllers
         // GET: Panelim
         [HttpGet]
         [Authorize]
+        public ActionResult Anasayfa()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             var uyemail = (string)Session["Mail"];

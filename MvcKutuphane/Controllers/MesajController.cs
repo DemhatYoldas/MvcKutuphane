@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,36 +42,21 @@ namespace MvcKutuphane.Controllers
             t.DURUM = true;
             db.TBLMESAJLAR.Add(t);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Giden","Mesaj");
         }
 
-
         [HttpPost]
-        public ActionResult MesajGuncelle(TBLMESAJLAR p)
+        public JsonResult MesajDurumunuGuncelle(int messageId)
         {
-            try
+            var message = db.TBLMESAJLAR.Find(messageId);
+            if (message != null)
             {
-                var msj = db.TBLMESAJLAR.Find(p.ID);
-                if (msj != null)
-                {
-                    msj.GONDEREN = p.GONDEREN;
-                    msj.KONU = p.KONU;
-                    msj.TARIH = p.TARIH;
-                    msj.ICERIK = p.ICERIK;
-                    msj.DURUM = false;
-                    db.SaveChanges();
-                }
-                return RedirectToAction("Index");
+                message.DURUM = false;
+                db.SaveChanges();
+                return Json(new { success = true });
             }
-            catch (Exception ex)
-            {
-                // Hata mesajını ekrana veya log dosyasına yazdırabilirsiniz.
-                // Örnek olarak:
-               ViewBag.ErrorMessage = ex.Message;
-                // veya
-                // Log.Error(ex, "Güncelleme sırasında hata oluştu.");
-                return View("Index"); // Hata sayfasına yönlendirme yapabilirsiniz.
-            }
+
+            return Json(new { success = false });
         }
 
 

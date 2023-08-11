@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/LayoutPanel.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 mt-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <h6 class="m-0 font-weight-bold text-info">Konumunuza Göre Hava Durumu</h6>
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-4">
+                        <h3 id="havaDurumuSehir"></h3>
+                        <img id="havaDurumuIcon" src="" alt="Hava Durumu Icon" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="havaDurumuDurum"></div>
+                        <div class="h6 mb-0 font-weight-bold text-gray-800" id="havaDurumuSicaklik"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<script>
+    // Konum bilgisini al ve hava durumu isteğini yap
+    function getWeatherByLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var apikey = '2560a4a40f2590b38c8bfa73261121fc';
+                    var url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}&units=metric`;
+
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('havaDurumuSehir').innerText = data.name;
+                            document.getElementById('havaDurumuIcon').src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+                            document.getElementById('havaDurumuDurum').innerText = data.weather[0].description;
+                            document.getElementById('havaDurumuSicaklik').innerText = data.main.temp + '°C';
+                        })
+                        .catch(error => {
+                            console.log('Hava durumu alınırken hata oluştu:', error);
+                        });
+                },
+                function (error) {
+                    console.log('Konum bilgisine erişilemedi:', error);
+                }
+            );
+        } else {
+            console.log('Tarayıcınız konum bilgisini desteklemiyor.');
+        }
+    }
+
+    // Sayfa yüklendiğinde hava durumu bilgisini al
+    window.onload = getWeatherByLocation;
+</script>
+
+

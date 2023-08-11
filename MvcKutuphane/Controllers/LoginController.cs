@@ -32,7 +32,7 @@ namespace MvcKutuphane.Controllers
                 //TempData["Kullaniciad"] = bilgiler.KULLANICIADI.ToString();
                 //TempData["Sifre"] = bilgiler.SIFRE.ToString();
                 //TempData["Okuladi"] = bilgiler.OKUL.ToString();
-                return RedirectToAction("Index","Panelim");
+                return RedirectToAction("Anasayfa","Panelim");
 
             }
             else
