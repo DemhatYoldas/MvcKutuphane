@@ -2451,6 +2451,7 @@
     <Content Include="Views\Mesaj\YeniMesaj.cshtml" />
     <Content Include="Views\Mesaj\Giden.cshtml" />
     <Content Include="Views\Panelim\Anasayfa.cshtml" />
+    <Content Include="Views\Panelim\Kitaplarım.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
