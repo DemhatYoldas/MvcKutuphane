@@ -2,6 +2,7 @@
 @using PagedList
 @using PagedList.Mvc
 
+
 @model PagedList.IPagedList<TBLUYELER>
 
 @{
@@ -35,6 +36,7 @@
                     <th>Fotoğraf</th>
                     <th>Telefon</th>
                     <th>Okul</th>
+                    <th>Üye Kitap Geçmişi</th>
                     <th>Sil</th>
                     <th>Güncelle</th>
                 </tr>
@@ -52,6 +54,9 @@
                         <td>@item.TELEFON</td>
                         <td>@item.OKUL</td>
                         <td>
+                            <a href="/Uye/Uyekitapgecmis/@item.ID" class="btn btn-info">Geçmiş Kitaplarım</a>
+                        </td>
+                        <td>
                             <a href="/Uye/UyeSil/@item.ID" class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -65,3 +70,5 @@
         </div>
     </div>
 </div>
+
+

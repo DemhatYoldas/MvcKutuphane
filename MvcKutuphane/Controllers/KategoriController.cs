@@ -28,7 +28,8 @@ namespace MvcKutuphane.Controllers
         [HttpPost]
         public ActionResult KategoriEkle(TBLKATEGORI p)
         {
-           db.TBLKATEGORI.Add(p);
+            p.DURUM = true;
+            db.TBLKATEGORI.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -36,7 +37,8 @@ namespace MvcKutuphane.Controllers
         public ActionResult KategoriSil(int id)
         {
             var kategori = db.TBLKATEGORI.Find(id);
-            db.TBLKATEGORI.Remove(kategori);
+            //db.TBLKATEGORI.Remove(kategori);
+            kategori.DURUM=false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

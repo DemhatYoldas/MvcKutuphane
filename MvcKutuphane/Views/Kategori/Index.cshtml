@@ -12,6 +12,7 @@
     <tr>
         <th>Kategori Id</th>
         <th>Kagtegori Adı</th>
+        <td>Durum</td>
         <th>Sil</th>
         <th>Güncelle</th>
         
@@ -22,6 +23,16 @@
         <tr>
             <td>@item.ID</td>
             <td>@item.AD</td>
+            <td>
+                @if (item.DURUM == true)
+                {
+                    <span class="badge badge-success">Aktif</span>
+                }
+                else
+                {
+                    <span class="badge badge-danger">Pasif</span>
+                }
+            </td>
             <td>
                 <a href="/Kategori/KategoriSil/@item.ID" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
