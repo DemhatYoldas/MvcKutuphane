@@ -51,5 +51,11 @@ namespace MvcKutuphane.Controllers
             var degerler = db.TBLHAREKET.Where(x => x.UYE == id).ToList();
             return View(degerler);
         }
+
+        public ActionResult Duyurular()
+        {
+            var duyuru = db.TBLDUYURULAR.Where(z => z.Durum == true).ToList();
+            return View(duyuru);
+        }
     }
 }
