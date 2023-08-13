@@ -8,18 +8,19 @@ using MvcKutuphane.Models.Entity;
 
 namespace MvcKutuphane.Controllers
 {
+    [Authorize]
     public class PanelimController : Controller
     {
         DBKUTUPHANEEntities db = new DBKUTUPHANEEntities();
 
         // GET: Panelim
         [HttpGet]
-        [Authorize]
+       
         public ActionResult Anasayfa()
         {
             return View();
         }
-
+        
         public ActionResult Index()
         {
             var uyemail = (string)Session["Mail"];
