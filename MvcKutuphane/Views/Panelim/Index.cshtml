@@ -5,110 +5,71 @@
     Layout = "~/Views/Shared/LayoutPanel.cshtml";
 }
 
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-    <title>Kütüphane Profil Bilgilerim</title>
-
-
+    <!-- Head içeriği buraya gelebilir -->
 </head>
-
 <body>
-    <div class="container mt-5">
-        <div class="form-container">
-            <h3 class="mb-4">Kütüphane Profil Bilgilerim</h3>
-
-            <div class="text-center mt-4">
-                <div class="profile-image" style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; margin: auto;">
-                    <!-- Mevcut profil resmini gösterme -->
-                    <img id="profilResmiOnizleme" src="@Model.FOTOGRAF" alt="Profil Resmi" style="object-fit: cover; width: 100%; height: 100%;" />
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <div class="d-flex justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Profilim</h6>
                 </div>
-                <br />
-                <!-- Yeni profil resmi seçme işlemi için gizli input alanı -->
-                <input type="file" id="profilResmi" name="FOTOGRAF" accept="image/*" style="display: none;" />
-                <!-- Profil Resmi Değiştir butonu için -->
-                <button class="btn btn-primary" onclick="openFileInput()">Profil Resmi Değiştir</button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="profile-image" style="width: 100%; max-width: 200px; height: auto; border-radius: 50%; overflow: hidden; margin: auto;">
+                                <img id="profilResmiOnizleme" src="@Model.FOTOGRAF" alt="Profil Resmi" style="object-fit: cover; width: 100%; height: 100%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        @using (Html.BeginForm("Index2", "Panelim", FormMethod.Post, new { enctype = "multipart/form-data", @class = "row g-3" }))
+                        {
+                            <div class="col-md-6 mb-2">
+                                @Html.HiddenFor(x => x.ID)
+                                <label for="inputUsername" class="form-label">Kullanıcı Adı</label>
+                                @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="inputFirstName" class="form-label">Ad</label>
+                                @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="inputLastName" class="form-label">Soyad</label>
+                                @Html.TextBoxFor(x => x.SOYADI, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                @Html.HiddenFor(x => x.MAIL)
+                                <label for="inputUsername" class="form-label">Telefon</label>
+                                @Html.TextBoxFor(x => x.TELEFON, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="inputSchool" class="form-label">Okul</label>
+                                @Html.TextBoxFor(x => x.OKUL, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="inputPassword" class="form-label">Şifre</label>
+                                @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="inputFirstName" class="form-label">Profil Resmi</label>
+                                @Html.EditorFor(x => x.FOTOGRAF, new { htmlAttributes = new { @class = "form-group", type = "file" } })
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <button type="submit" class="btn btn-warning">Düzenle</button>
+                            </div>
 
-                <script>
-                    function openFileInput() {
-                        // Dosya seçme inputunu açma
-                        document.getElementById("profilResmi").click();
-                    }
-
-                    // Dosya seçildiğinde çalışacak fonksiyon
-                    document.getElementById("profilResmi").addEventListener("change", function (event) {
-                        var file = event.target.files[0]; // Dosyayı al
-
-                        // Dosyanın bir resim olup olmadığını kontrol et
-                        if (file && file.type.includes("image")) {
-                            var reader = new FileReader();
-
-                            reader.onload = function (e) {
-                                // Dosya verisini al ve önizleme yap
-                                document.getElementById("profilResmiOnizleme").src = e.target.result;
-                            };
-
-                            reader.readAsDataURL(file); // Resmi önizle
                         }
-                    });
-                </script>
-                <br />
-                @using (Html.BeginForm("Index2", "Panelim", FormMethod.Post))
-                {
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputSchool">ID</label>
-                            @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputUsername">Kullanıcı Adı</label>
-                            @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control" })
-                        </div>
                     </div>
-                    <br />
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputFirstName">Ad</label>
-                            @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputLastName">Soyad</label>
-                            @Html.TextBoxFor(x => x.SOYADI, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail">Mail</label>
-                            @Html.TextBoxFor(x => x.MAIL, new { @class = "form-control", @readonly = "readonly" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputUsername">Telefon</label>
-                            @Html.TextBoxFor(x => x.TELEFON, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputSchool">Okul</label>
-                            @Html.TextBoxFor(x => x.OKUL, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword">Şifre</label>
-                            @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <br />
-                    <button type="submit" class="btn btn-warning">Düzenle</button>
 
-                }
+                </div>
             </div>
         </div>
-        <br />
-
+    </div>
 </body>
-
 </html>
