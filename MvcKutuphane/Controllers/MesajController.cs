@@ -9,7 +9,7 @@ using MvcKutuphane.Models.Entity;
 
 namespace MvcKutuphane.Controllers
 {
-    public class MesajController : Controller
+    public class MesajController : BaseController
     {
         DBKUTUPHANEEntities db=new DBKUTUPHANEEntities();
         // GET: Mesaj

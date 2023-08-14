@@ -10,19 +10,17 @@ using MvcKutuphane.Models.Entity;
 namespace MvcKutuphane.Controllers
 {
    
-    public class PanelimController : Controller
+    public class PanelimController : BaseController
     {
         DBKUTUPHANEEntities db = new DBKUTUPHANEEntities();
 
         // GET: Panelim
         [HttpGet]
-       
         public ActionResult Anasayfa()
         {
-           
             return View();
         }
-        
+
         public ActionResult Index()
         {
             var uyemail = (string)Session["Mail"];
@@ -98,6 +96,16 @@ namespace MvcKutuphane.Controllers
         {
             var duyuru = db.TBLDUYURULAR.Where(z => z.Durum == true).ToList();
             return View(duyuru);
+        }
+
+        public PartialViewResult partial1()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult partial2()
+        {
+            return PartialView();
         }
     }
 }
