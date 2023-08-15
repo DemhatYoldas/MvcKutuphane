@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcKutuphane.Models;
 using MvcKutuphane.Models.Entity;
 
 namespace MvcKutuphane.Controllers
@@ -23,6 +24,29 @@ namespace MvcKutuphane.Controllers
             ViewBag.Dgrkasa = Kasa;
             return View();
         }
-
+        public ActionResult VisualizeUrunResult()
+        {
+            return Json(liste());
+        }
+        public List<Class> liste()
+        {
+            List<Class> cs = new List<Class>();
+            cs.Add(new Class()
+            {
+                yayinevi = "Mars",
+                sayi = 4
+            });
+            cs.Add(new Class()
+            {
+                yayinevi = "demo",
+                sayi = 8
+            });
+            cs.Add(new Class()
+            {
+                yayinevi = "komagene",
+                sayi = 5
+            });
+            return cs;
+        }
     }
 }

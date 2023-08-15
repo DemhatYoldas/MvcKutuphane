@@ -115,67 +115,6 @@
 </div>
 <br />
 
-
-<div class="row">
-
-    <div class="col-xl-8 col-lg-7">
-
-        <!-- Alan Grafiği -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Alan Grafiği</h6>
-            </div>
-            <div class="card-body">
-                <div class="chart-area">
-                    <!-- Alan grafiği için Canvas -->
-                    <canvas id="myAreaChart"></canvas>
-                </div>
-                <hr>
-                Alan grafiği için stil dosyası:
-                <code>/js/demo/chart-area-demo.js</code>
-            </div>
-        </div>
-
-        <!-- Bar Grafiği -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Bar Grafiği</h6>
-            </div>
-            <div class="card-body">
-                <div class="chart-bar">
-                    <!-- Bar grafiği için Canvas -->
-                    <canvas id="myBarChart"></canvas>
-                </div>
-                <hr>
-                Bar grafiği için stil dosyası:
-                <code>/js/demo/chart-bar-demo.js</code>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Donut Grafiği -->
-    <div class="col-xl-4 col-lg-5">
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Donut Grafiği</h6>
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-pie pt-4">
-                    <!-- Donut grafiği için Canvas -->
-                    <canvas id="myPieChart"></canvas>
-                </div>
-                <hr>
-                Donut grafiği için stil dosyası:
-                <code>/js/demo/chart-pie-demo.js</code>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <script>
     // Konum bilgisini al ve hava durumu isteğini yap
     function getWeatherByLocation() {
@@ -213,10 +152,69 @@
 </script>
 
 
+<html lang="tr">
+
+<head>
+    <title>Result Visualization</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body style="background-color: white;">
+    <table>
+        <tr>
+            <td>
+                <div id="piechart" style="width: 900px; height: 500px;"></div>
+            </td>
+        </tr>
+    </table>
 
 
+</body>
 
+</html>
 
+<script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(loadChartData);
+
+        function loadChartData() {
+            $.ajax({
+                url: '@Url.Action("VisualizeUrunResult","Anasayfa")',
+                type: 'POST',
+                dataType: 'json',
+                success: function (result) {
+                    drawChart(result);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Name');
+            data.addColumn('number', 'Stoklar');
+            var dataArray = [];
+
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.yayinevi, obj.sayi]);
+            });
+            data.addRows(dataArray);
+
+            var options = {
+                title: 'Kitap - Yayınevi Grafiği',
+                width: 600,
+                height: 300,
+                bar: { groupWidth: "20%" },
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+</script>
 
 <!-- Page level plugins -->
 <script src="/startbootstrap/vendor/chart.js/Chart.min.js"></script>
