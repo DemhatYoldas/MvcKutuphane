@@ -62,7 +62,6 @@
                     <span>Profilim</span>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
@@ -72,6 +71,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Mesaj İşlemleri:</h6>
+                        <span class="badge bg-primary float-right">@ViewBag.Gelen</span>
+                        <span class="badge bg-primary float-right">@ViewBag.Giden</span>
                         <a class="collapse-item" href="/Mesaj/Index/">Gelen Mesajlar</a>
                         <a class="collapse-item" href="/Mesaj/Giden/">Gönderilen Mesajlar</a>
                     </div>
@@ -189,10 +190,10 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profilim
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                @*<a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ayarlar
-                                </a>
+                                </a>*@
                                 <a class="dropdown-item" href="/Panelim/Duyurular/">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Duyurular

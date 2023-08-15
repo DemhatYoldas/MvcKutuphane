@@ -9,8 +9,8 @@ namespace MvcKutuphane.Controllers
 {
     public class BaseController : Controller
     {
-        // bu ksımda her sayfa da fotograf ve kullanıcı adını almak için 
-        DBKUTUPHANEEntities db=new DBKUTUPHANEEntities();
+        // bu ksımda her sayfa da fotograf ve kullanıcı adını almak için basecontroller oluşturduk ama bunu dezavantajı veri erişimi sıklığına neden olabiliyor bunun  için çözüm bulana kadar boyle :)
+        DBKUTUPHANEEntities db =new DBKUTUPHANEEntities();
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (Session["Mail"] != null)

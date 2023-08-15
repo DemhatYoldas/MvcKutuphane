@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MvcKutuphane.Controllers
 {
+    [AllowAnonymous]
     public class KayitolController : Controller
     {
         // GET: Kayitol
@@ -24,6 +25,8 @@ namespace MvcKutuphane.Controllers
             {
                 return View("Kayit");
             }
+            var varsayilan = "/Images/Bos/white.jpg";
+            p.FOTOGRAF = varsayilan;
             db.TBLUYELER.Add(p);
             db.SaveChanges();
             return RedirectToAction("Girisyap", "Login");

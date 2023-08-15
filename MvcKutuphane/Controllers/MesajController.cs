@@ -59,6 +59,5 @@ namespace MvcKutuphane.Controllers
             return Json(new { success = false });
         }
 
-
     }
 }

@@ -135,6 +135,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\AyarlarController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CikisController.cs" />
@@ -343,6 +344,7 @@
     <Content Include="Galeri\img1.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Bos\white.jpg" />
     <Content Include="login\css\bootstrap.min.css" />
     <Content Include="login\css\bootstrap\mixins\_border-radius.css" />
     <Content Include="login\css\bootstrap\mixins\_screen-reader.css" />
@@ -2462,6 +2464,7 @@
     <Content Include="Views\Duyuru\DuyuruEkle.cshtml" />
     <Content Include="Views\Duyuru\DuyuruGetir.cshtml" />
     <Content Include="Views\Panelim\Duyurular.cshtml" />
+    <Content Include="Views\AdminLogin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
