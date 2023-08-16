@@ -72,43 +72,46 @@
                     </div>
                 </div>
             </li>
+            @if (User.IsInRole("A"))
+            {
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                   aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-user-circle"></i>
-                    <span>Üye / Personel işlemi</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Üye/Personel işlemi:</h6>
-                        <a class="collapse-item" href="/Personel/Index/">Personeller</a>
-                        <a class="collapse-item" href="/Uye/Index/">Üyeler</a>
+
+                <!-- Nav Item - Utilities Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                       aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Üye / Personel işlemi</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                         data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Üye/Personel işlemi:</h6>
+                            <a class="collapse-item" href="/Personel/Index/">Personeller</a>
+                            <a class="collapse-item" href="/Uye/Index/">Üyeler</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1"
-                   aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa fa-handshake"></i>
-                    <span>Ödünç Kitap işlemleri</span>
-                </a>
-                <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Ödünç İşlemi:</h6>
-                        <a class="collapse-item" href="/Odunc/Oduncver/">Ödünç Kitap Ver</a>
-                        <a class="collapse-item" href="/Odunc/Index/">Ödünç Kitap Al</a>
-                        <a class="collapse-item" href="/İslem/Index/">İşlemler</a>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1"
+                       aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa fa-handshake"></i>
+                        <span>Ödünç Kitap işlemleri</span>
+                    </a>
+                    <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities"
+                         data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Ödünç İşlemi:</h6>
+                            <a class="collapse-item" href="/Odunc/Oduncver/">Ödünç Kitap Ver</a>
+                            <a class="collapse-item" href="/Odunc/Index/">Ödünç Kitap Al</a>
+                            <a class="collapse-item" href="/İslem/Index/">İşlemler</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-
+                </li>
+            }
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/Duyuru/Index/">
@@ -139,15 +142,18 @@
                 </a>
             </li>
 
+            @if (User.IsInRole("A"))
+            {
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="/Ayarlar/Index/">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Ayarlar</span>
-                </a>
-            </li>
 
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/Ayarlar/Index/">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Ayarlar</span>
+                    </a>
+                </li>
+            }
             <li class="nav-item">
                 <a class="nav-link" href="/#/Index/">
                     <i class="fas fa-question-circle"></i>

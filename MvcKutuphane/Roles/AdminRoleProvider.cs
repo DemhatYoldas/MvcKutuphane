@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcKutuphane.Models.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,7 +38,9 @@ namespace MvcKutuphane.Roles
 
         public override string[] GetRolesForUser(string username)
         {
-            throw new NotImplementedException();
+            DBKUTUPHANEEntities db = new DBKUTUPHANEEntities();
+            var deger = db.TBLADMİN.FirstOrDefault(x => x.Kullanici == username);
+            return new string[] { deger.Yetki };
         }
 
         public override string[] GetUsersInRole(string roleName)
