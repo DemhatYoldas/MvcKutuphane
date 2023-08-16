@@ -8,6 +8,7 @@ using MvcKutuphane.Models.Entity;
 
 namespace MvcKutuphane.Controllers
 {
+    [Authorize(Roles = "A")]
     public class KategoriController : Controller
     {
         DBKUTUPHANEEntities db=new DBKUTUPHANEEntities();

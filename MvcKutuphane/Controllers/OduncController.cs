@@ -7,6 +7,7 @@ using MvcKutuphane.Models.Entity;
 
 namespace MvcKutuphane.Controllers
 {
+    [Authorize(Roles ="A")]
     public class OduncController : Controller
     {
         // GET: Odunc

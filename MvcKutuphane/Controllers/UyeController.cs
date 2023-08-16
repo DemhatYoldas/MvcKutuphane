@@ -9,6 +9,7 @@ using PagedList;
 
 namespace MvcKutuphane.Controllers
 {
+    [Authorize(Roles = "A")]
     public class UyeController : Controller
     {
         // GET: Uye
