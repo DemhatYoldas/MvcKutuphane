@@ -1,0 +1,118 @@
+﻿@using MvcKutuphane.Models.Entity
+@model List<TBLADMİN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<style>
+    .rounded-circle-medium {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+</style>
+
+
+<div class="row justify-content-end mb-2">
+    <div class="col-auto">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Yeni Admin Ekle
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Kullanıcı</th>
+                <th>Fotoğraf</th>
+                <th>Yetki</th>
+                <th>Durum</th>
+                <th>Güncelle</th>
+                <th>Sil</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Kullanici</td>
+                    <td>
+                        <img class="rounded-circle-medium" src="@Url.Content(item.Fotograf)">
+                    </td>
+                    <td>@item.Yetki</td>
+                    <td>
+                        @if (item.Durum == true)
+                        {
+                            <span class="badge badge-success">Aktif</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-danger">Pasif</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="/Ayarlar/AdminGetir/@item.ID" class="btn btn-warning ">
+                            Güncelle
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/Ayarlar/AdminSil/@item.ID" class="btn btn-danger btn-circle">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Admin Ekleme</h1>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <form action="/Ayarlar/YeniAdmin/" method="post">
+                    <label for="Kullanici">Kullanıcı Adı</label>
+                    <input type="text" class="form-control" name="Kullanici">
+                    <br />
+                    <label for="Sifre">Kullanıcı Şifre</label>
+                    <input type="password" class="form-control" name="Sifre">
+                    <br />
+                    <label for="Yetki">Yetki</label>
+                    <input type="text" class="form-control" name="Yetki">
+                    <br />
+                    <div class="form-group">
+                        <label for="Durum">Durum</label><br>
+                        <input type="radio" id="aktif" name="Durum" value="true">
+                        <label for="aktif">Aktif</label><br>
+                        <input type="radio" id="pasif" name="Durum" value="false">
+                        <label for="pasif">Pasif</label><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Modal kapatma işlemi için gerekli script -->

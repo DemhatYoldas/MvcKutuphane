@@ -349,6 +349,7 @@
     <Content Include="Galeri\img1.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Admin\white.jpg" />
     <Content Include="Images\Bos\white.jpg" />
     <Content Include="login\css\bootstrap.min.css" />
     <Content Include="login\css\bootstrap\mixins\_border-radius.css" />
@@ -2471,6 +2472,8 @@
     <Content Include="Views\Panelim\Duyurular.cshtml" />
     <Content Include="Views\AdminLogin\Login.cshtml" />
     <Content Include="Views\Error\Page404.cshtml" />
+    <Content Include="Views\Ayarlar\Index.cshtml" />
+    <Content Include="Views\Ayarlar\AdminGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2505,6 +2508,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>

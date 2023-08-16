@@ -17,5 +17,8 @@ namespace MvcKutuphane.Models.Entity
         public int ID { get; set; }
         public string Kullanici { get; set; }
         public string Sifre { get; set; }
+        public Nullable<bool> Durum { get; set; }
+        public string Yetki { get; set; }
+        public string Fotograf { get; set; }
     }
 }

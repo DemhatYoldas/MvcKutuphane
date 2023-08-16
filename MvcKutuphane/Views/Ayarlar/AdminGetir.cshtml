@@ -1,0 +1,74 @@
+﻿@model MvcKutuphane.Models.Entity.TBLADMİN
+
+@{
+    ViewBag.Title = "AdminGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("AdminGuncelle", "Ayarlar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label for="iconInput">ID</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="iconInput">Fotoğraf</label>
+        <div class="col-md-10">
+            <img src="@Url.Content(Model.Fotograf)" alt="Varolan Fotoğraf" name="Fotograf" style="max-width: 100px; max-height: 100px;">
+            @Html.EditorFor(model => model.Fotograf, new { htmlAttributes = new { @class = "form-group", type = "file" } })
+            @Html.ValidationMessageFor(model => model.Fotograf, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="iconInput">Kullanıcı</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Kullanici, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Kullanici, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="iconInput">Şifre</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="iconInput">Yetki</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Yetki, new List<SelectListItem>
+            {
+                new SelectListItem { Text = "A", Value = "A" },
+                new SelectListItem { Text = "B", Value = "B" },
+                new SelectListItem { Text = "C", Value = "C" }
+            }, "Seçiniz", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Yetki, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="iconInput">Durum</label>
+        <div class="col-md-10">
+            <select class="form-control" name="Durum">
+                <option value="true">Aktif</option>
+                <option value="false">Pasif</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.Durum, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Güncelle" class="btn btn-success" />
+        </div>
+    </div>
+
+
+}

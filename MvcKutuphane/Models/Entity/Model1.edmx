@@ -22,6 +22,9 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kullanici" Type="varchar" MaxLength="20" />
           <Property Name="Sifre" Type="varchar" MaxLength="20" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="Yetki" Type="char" MaxLength="1" />
+          <Property Name="Fotograf" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="TBLCEZALAR">
           <Key>
@@ -676,6 +679,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Kullanici" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="Yetki" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Fotograf" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -878,6 +884,9 @@
           <EntitySetMapping Name="TBLADMİN">
             <EntityTypeMapping TypeName="DBKUTUPHANEModel.TBLADMİN">
               <MappingFragment StoreEntitySet="TBLADMİN">
+                <ScalarProperty Name="Fotograf" ColumnName="Fotograf" />
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
                 <ScalarProperty Name="Sifre" ColumnName="Sifre" />
                 <ScalarProperty Name="Kullanici" ColumnName="Kullanici" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
