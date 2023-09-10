@@ -1,4 +1,4 @@
-Herkese merhaba Murat Yücedağ'ın "Mvc5 ile 3 Panelli Kütüphane Yönetim Sistemi " kursunu başarıyla bitirdim ve bu kursun sertifikasını elde ettim
+Mvc5 ile 3 Panelli Kütüphane Yönetim Sistemi 
 
 Bu proje, bir kütüphanenin vitrin, admin ve kullanıcı olmak üzere 3 temel panelinden oluşuyor. Özellikle admin panelinin dashboard kısmı, hem güçlü bir tasarım arayüzü sunuyor hem de CRUD işlemlerinin ötesinde Entity Framework ve Linq sorgularıyla çalışarak Trigger ve Procedure gibi SQL yapıları kullanarak somut bir proje geliştirdik. Ayrıca, projenin dışında, konuma göre hava durumunu belirleme ve kullanıcıların birbirlerine mesaj gönderdiklerinde mesaj içeriğinin okunup okunmadığı hakkında bilgi edinmelerini sağlamak gibi ek özellikler ekledim.
 
